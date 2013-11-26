@@ -10,7 +10,7 @@
 
 <body>
 
-<div class="container" id="header" ></div>
+<div class="container" id="header" style="margin-bottom: 20px" ></div>
 <div id="surls" class="container" ></div>
 
 <!-- Templates -->
@@ -20,15 +20,18 @@
         <label for="shorten">Shortened URL</label>
         <input class="form-control" type="text" id="url" placeholder="URL..." />
     </div>
-    <button class="new btn btn-primary">Shorten URL</button>
+    <button class="btn btn-primary new">Shorten URL</button>
 </script>
 
 <script type="text/template" id="tmpl_surl">
-    <section id='<%= surl %>'>
-        <button class="btn  btn-default delete">
+    <section id='<%= surl %>' style="padding:5px 0px 5px 0px">
+        <a class="btn btn-sm btn-primary" style="width:100px" href='<%= link %>'>
+            <%= surl %>
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+        <button class="btn btn-sm  btn-default delete">
             <span class="glyphicon glyphicon-remove-circle"></span>
         </button>
-        <a href='<%= link %>'><%= surl %></a>
     </section>
 </script>
 
