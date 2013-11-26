@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>URL shortener</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="https://raw.github.com/pawy/icons/master/sUrl_icons/1_Desktop_Icons/icon_016.png" />
+</head>
+
+<body>
+
+<div class="container" id="header" ></div>
+<div id="surls" class="container" ></div>
+
+<!-- Templates -->
+<script type="text/template" id="tpl-header">
+    <h1><img src="https://raw.github.com/pawy/icons/master/sUrl_icons/1_Desktop_Icons/icon_048.png" /><?= strtoupper(SERVER) ?> <small>URL shortener</small></h1>
+    <div class="form-group">
+        <label for="shorten">Shortened URL</label>
+        <input class="form-control" type="text" id="url" placeholder="URL..." />
+    </div>
+    <button class="new btn btn-primary">Shorten URL</button>
+</script>
+
+<script type="text/template" id="tmpl_surl">
+    <section id='<%= surl %>'>
+        <button class="btn  btn-default delete">
+            <span class="glyphicon glyphicon-remove-circle"></span>
+        </button>
+        <a href='<%= link %>'><%= surl %></a>
+    </section>
+</script>
+
+<!-- JavaScript -->
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="/lib/underscore.js"></script>
+<script src="/lib/backbone-min.js"></script>
+<script src="surl.js"></script>
+
+</body>
+</html>
