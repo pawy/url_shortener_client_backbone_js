@@ -13,7 +13,6 @@ SurlCollection = Backbone.Collection.extend({
 SurlListView = Backbone.View.extend({
 
     initialize:function () {
-        this.model.bind("reset", this.render, this);
         var self = this;
         this.model.bind("add", function (surl) {
             $(self.el).prepend(new SurlItemView({model: surl}).render().el);
@@ -21,9 +20,6 @@ SurlListView = Backbone.View.extend({
     },
 
     render : function (eventName) {
-        _.each(this.model.models, function (surl) {
-            $(this.el).append(new SurlItemView({model: surl}).render().el);
-        }, this);
         return this;
     }
 });
@@ -34,7 +30,6 @@ SurlItemView = Backbone.View.extend({
 
     initialize: function () {
         this.model.bind("change", this.render, this);
-        //this.model.bind("destroy", this.close, this);
     },
 
     render: function (eventName) {
@@ -52,8 +47,10 @@ SurlItemView = Backbone.View.extend({
     },
 
     doDelete: function( event ){
-        var self = this;
-        // Button clicked, you can access the element that was clicked with event.currentTarget
+       if(!confirm('Are you sure?'))
+           return false;
+
+       var self = this;
        this.model.destroy({
            success:function(model, response)
            {
@@ -112,8 +109,8 @@ var AppRouter = Backbone.Router.extend({
 
     list: function () {
         this.surllist = new SurlCollection();
-        this.surlListView = new SurlListView({model:this.surllist});
         this.surllist.fetch();
+        this.surlListView = new SurlListView({model: this.surllist});
         $('#surls').html(this.surlListView.render().el);
     }
 });
